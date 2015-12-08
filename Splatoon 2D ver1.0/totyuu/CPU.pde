@@ -9,7 +9,7 @@ class CPU {
 
   
   CPU(float x,float y,color col){
-    xCPU = x;
+    xCPU = x;    
     yCPU = y;
     colCPU = col;
     angleCPU = 270;
