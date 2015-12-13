@@ -1,6 +1,15 @@
 //2015.12.6 ver.1.1
 //シューターを使えるようにした
 
+//2015.12.8 ver1.2
+//色塗りシステム大幅変更
+//弾発射可能（色は塗れない）
+
+//2015.12.8 ver1.3
+//色塗り可能
+
+
+
 import ddf.minim.spi.*;         //minimライブラリインポート
 import ddf.minim.signals.*;
 import ddf.minim.*;
@@ -23,19 +32,19 @@ PImage start;
 PFont fontStart;
 
 //gameMode1
-boolean[][] flipped;          //敵色判定
-boolean[][] flippedF;         //味方色判定
-color[][] c; //インクの元
+//boolean[][] flipped;          //敵色判定
+//boolean[][] flippedF;         //味方色判定
+//color[][] c; //インクの元
 color friendOFcol=color(255, 0, 0);    //自分チームの塗る色
 color enemyOFcol=color(0, 255, 0); 
 color COMcol=color(85, 230, 205);
 color COMFcol= color(255, 180, 10);
 int angle;         //プレイヤー角度
-int xPlayer;          //プレイヤー座標
-int yPlayer;          //プレイヤー座標
+float xPlayer;          //プレイヤー座標
+float yPlayer;          //プレイヤー座標
 float vx=0;          //x増加量
 float vy=0;          //y増加量
-int r=10;            //円の半径  
+float r=10;            //円の半径  
 boolean w, a, s, d, c1, dash;//keyの状態保存
 int numberOfcoms=7;  //CPUの数
 int[][] aaa;        //色塗りの判定
@@ -44,10 +53,11 @@ PImage[] img1, img2;
 PImage imgResult1;
 PImage imgResult2;
 
-Weapon CharacterWeapon;        //Weaponクラスを呼び出すときに格納する変数
+
 int buki;
-int FiringRange;        //射程
+int FiringRange;              //射程
 int PowerRange;               //攻撃力
+
 
 
 //gameMode2
@@ -63,6 +73,11 @@ String win ="WIN";
 String lose = "LOSE";
 
 
+Shooter[] Shooters;
+int Bulletcount=0;
+int num=1000;
+
+
 void setup() {
   size(1000, 500);
   smooth();
@@ -71,7 +86,7 @@ void setup() {
 
 
 void draw() {
-  println(millis(), gameMode);
+  println(Shooters[0].pxInk1, Shooters[0].pyInk1, Shooters[0].pxInk2, Shooters[0].pyInk2);
   if (gameMode ==0) {
     drawStart();
   }
@@ -153,6 +168,21 @@ void keyReleased() {
   if (key == 'd') {
     dash = false;
   }
+}
+
+void mousePressed(){
+  Shooters[Bulletcount].xInk = mouseX;
+  Shooters[Bulletcount].yInk = mouseY;
+  Shooters[Bulletcount].pxInk1 = xPlayer;
+  Shooters[Bulletcount].pyInk1 = yPlayer;
+  Shooters[Bulletcount].pxInk2 = xPlayer;
+  Shooters[Bulletcount].pyInk2 = yPlayer;
+  Shooters[Bulletcount].Init();
+  Bulletcount++;
+  if(Bulletcount == num){
+    Bulletcount = 0;
+  }
+  Shooters[Bulletcount].Shori();
 }
 
 void stop() {

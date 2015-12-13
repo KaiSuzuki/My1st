@@ -1,5 +1,5 @@
 void drawGame() {
-  for (int y=0; y<c.length; y++) {
+  /*for (int y=0; y<c.length; y++) {
     for (int x=0; x<c[0].length; x++) {
       if (flippedF[y][x]) {                    //左からx番目、上からy番目の円の色塗り状態が真の時
         fill(friendOFcol);                     //その座標の円を味方の色で塗る
@@ -27,19 +27,25 @@ void drawGame() {
         ellipse(2*r*l+r, 2*r*k+r, 2*r, 2*r);
       }
     }
+  }*/
+  
+  for(int i=0;i<num;i++){
+    Shooters[i].drawBullet();
+    //弾丸消滅処理
+      
   }
   drawPlayer();
-  for (int i=0; i <4; i++) {
+  /*for (int i=0; i <4; i++) {
     COMs[i].drawCPU(img2[i]);
-    aaa[int(COMs[i].yCPU)/20][int(COMs[i].xCPU)/20]=2;
-    flipped[int(COMs[i].yCPU)/20][int(COMs[i].xCPU)/20] = true;
+    aaa[int(COMs[i].yCPU)/20][int(COMs[i].xCPU)/20]=2;                    //各CPUの座標の敵の円を上塗りする
+    flipped[int(COMs[i].yCPU)/20][int(COMs[i].xCPU)/20] = true;           //各CPUの座標の円を塗る
   }
   for (int i=4; i<7; i++) {
     COMs[i].drawCPU(img1[i-3]);
     aaa[int(COMs[i].yCPU)/20][int(COMs[i].xCPU)/20]=1;
     flippedF[int(COMs[i].yCPU)/20][int(COMs[i].xCPU)/20] = true;
-  }
-  if (millis()-time >= 30000) {
+  }*/
+  if (millis()-time >= 1000000000) {
     save("result.png");
     buttleBGM.pause();
     gameMode=2;

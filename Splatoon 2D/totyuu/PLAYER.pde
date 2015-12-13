@@ -49,9 +49,9 @@ void drawPlayer() {
 
   if (c1) {
     switch(buki) {
-    case 1:      //上方向を向いているならば
+    case 1:      //シューターならば
       switch(angle){
-        case 0:        //シューターならば
+        case 0:        //上方向を向いているならば      
         if (yPlayer/20 >=FiringRange) {                                  //fはとりあえず射程距離を表す
           flippedF[yPlayer/20-FiringRange][xPlayer/20] = true;
           aaa[yPlayer/20-FiringRange][xPlayer/20]=1;
@@ -73,6 +73,8 @@ void drawPlayer() {
         break;
         
         case 90:
+        /*bulletX += 1;
+        ellipse(bulletX,bulletY,bulletD,bulletD);*/
         if (width-FiringRange >= xPlayer/20 ) {                                  //fはとりあえず射程距離を表す
           flippedF[yPlayer/20][xPlayer/20+FiringRange] = true;
           aaa[yPlayer/20][xPlayer/20+FiringRange]=1;

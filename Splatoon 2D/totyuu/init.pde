@@ -33,6 +33,9 @@ void Init(){
   angle = 90;                            //プレイヤ―の向き初期値
   xPlayer=r;                             //プレイヤーのx座標初期値
   yPlayer=height/5;
+  bulletX = xPlayer;
+  bulletY = yPlayer;
+  bulletD = 10;                      
   minim = new Minim(this);
   player = minim.loadFile("startBGM.mp3");
   buttleBGM = minim.loadFile("buttleBGM.mp3");
