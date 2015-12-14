@@ -35,7 +35,6 @@ class Shooter {
   }
 
   void drawBullet() {
-
     if (BulletJudge) {
       vBullet = get_normalV(xInk-pxInk1, yInk-pyInk1);
       //弾丸移動

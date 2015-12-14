@@ -9,6 +9,20 @@ void Init(){
   imgResult1 = loadImage("ikaGirl.png");
   imgResult2 = loadImage("ikaBoy.png");                                //アイコン画像の中心を中心の座標にする
   
+  Players = new Player(r,height/5,90);
+  Bullets = new Bullet[BulletNum];
+  Inks = new Ink[InkNum];
+  
+  for(int i= 0;i<BulletNum;i++){
+    Bullets[i] = new Bullet(-100,-100);
+    Bullets[i].setupBullet();
+  }
+  
+  for(int i=0;i<InkNum;i++){
+    Inks[i] = new Ink(-100,-100);
+    Inks[i].setupInk();
+  }
+  
   COMs = new CPU[numberOfcoms];
   for (int i=0; i < 4; i++) {
     COMs[i] = new CPU(width, (i+1)*height/5,COMcol);
@@ -20,18 +34,6 @@ void Init(){
     img1[j] = loadImage("ikaGirl.png");
     img2[j] = loadImage("ikaBoy.png");
   }
-  /*flipped = new boolean[25][50];
-  flippedF = new boolean[25][50];
-  for (int y=0; y<c.length; y++) {
-    for (int x=0; x<c[0].length; x++) {
-      flipped[y][x] = false;              //ウィンドウ上の円の色状態
-      flippedF[y][x] = false;             //ウィンドウ上の円の色状態
-      aaa[y][x]=0;
-    }
-  }*/
-  angle = 90;                            //プレイヤ―の向き初期値
-  xPlayer=r;                             //プレイヤーのx座標初期値
-  yPlayer=height/5;
   
   minim = new Minim(this);
   player = minim.loadFile("startBGM.mp3");
@@ -46,10 +48,11 @@ void Init(){
   splatoooon = "Splatoooon";
   startButton = "Press [S]!!!";
   
-  Shooters = new Shooter[num];
+  /*Shooters = new Shooter[num];
   for(int i=0;i<num;i++){
     Shooters[i] = new Shooter(-100,-100);
     Shooters[i].setupBullet();
-  }
+  }*/
+  
 }
   
